@@ -6,11 +6,14 @@ import axios from "axios";
 import Nav from "../components/nav";
 import { BACKEND_URL, PLATFORM_FEE, PLATFORM_PUBLIC_KEY } from "@/config/utils";
 import clsx from "clsx";
+import { useAtom } from "jotai";
+import { balanceUpdate } from "@/store/atom";
 
 export const amounts = [0.1, 0.5, 1, 2];
 
 export default function CoinFlip() {
   const [selectedSide, setSelectedSide] = useState<'heads' | 'tails' | null>(null);
+  const [balanceUp, setBalanceUpdate] = useAtom(balanceUpdate);
   const [selectedCoin, setSelectedCoin] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
   const [amount, setAmount] = useState<number>(0.1);
@@ -112,8 +115,10 @@ export default function CoinFlip() {
                   singnature,
                 });
                 if (res.data.won) {
+                  setBalanceUpdate(!balanceUp);
                   alert("you won");
                 } else {
+                  setBalanceUpdate(!balanceUp);
                   alert("you lost");
                 }
               } catch (err) {
