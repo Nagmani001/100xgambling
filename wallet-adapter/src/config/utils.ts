@@ -1,3 +1,4 @@
+import { PublicKey } from "@solana/web3.js";
 
 export const rouletteNumbers = [
   { number: 0, color: 'green' },
@@ -39,3 +40,7 @@ export const rouletteNumbers = [
   { number: 26, color: 'black' },
   { number: 0, color: 'green' } // 00
 ];
+
+export const PLATFORM_FEE = 3;
+export const PLATFORM_PUBLIC_KEY = new PublicKey("FfS6HXPCMU1NsVQciD66x7Q37gUdwZVviEdggZozES7a");
+export const BACKEND_URL = "http://localhost:3000";
